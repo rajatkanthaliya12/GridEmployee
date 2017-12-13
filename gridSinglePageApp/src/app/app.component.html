@@ -1,0 +1,75 @@
+<div *ngIf="!data">Loading...</div>
+
+<div *ngIf="data">
+  <div class="container-fluid">
+    <div class="jumbotron">
+      <h3>Employee Information</h3>
+
+    </div>
+    <div class="row static">
+      <div class="col-md-7 col-xs-7">
+        <input type="checkbox" [(ngModel)]="selectAll" (click)="checkAll()"> <br>Select All
+      </div>
+      <div class="col-md-7 col-xs-7">
+        ID
+      </div>
+      <div class="col-md-7 col-xs-7">
+        Name
+      </div>
+      <div class="col-md-7 col-xs-7">
+        Email
+      </div>
+      <div class="col-md-7 col-xs-7">
+        Gender
+      </div>
+      <div class="col-md-7 col-xs-7">
+        Salary
+      </div>
+      <div class="col-md-7 col-xs-7">
+        <div class="delete" (click)="delete()">Delete Selected</div>
+      </div>
+    </div>
+    <accordion>
+      <div class="row" *ngFor="let result of data | paginate: { itemsPerPage: 25, currentPage: p } ">
+        <accordion-group>
+          <div accordion-heading class="clearfix">
+            <div class="col-md-7 col-xs-7">
+              <input type="checkbox" [checked]="exist(result)" (click)="toggleSelection($event,result)">
+            </div>
+            <div class="col-md-7 col-xs-7">
+              {{result.id}}
+            </div>
+            <div class="col-md-7 col-xs-7">
+              {{result.name}}
+            </div>
+            <div class="col-md-7 col-xs-7">
+              <div>{{result.email}}</div>
+            </div>
+            <div class="col-md-7 col-xs-7">
+              {{result.gender}}
+            </div>
+            <div class="col-md-7 col-xs-7">
+              {{calSalary(result.salary[0])}}
+            </div>
+            <div class="col-md-7 col-xs-7">
+              <div class="delete" (click)="toggleSelection($event,result);delete()">Delete</div>
+            </div>
+          </div>
+         <div class="row">
+           <div class="col-md-4 col-xs-4">
+             Basic <input type="text"  [(ngModel)]="result.salary[0].basic" >
+           </div>
+           <div class="col-md-4 col-xs-4">
+             Allowance <input type="text"  [(ngModel)]="result.salary[0].allowance" >
+           </div>
+           <div class="col-md-4 col-xs-4">
+             Deduction <input type="text"  [(ngModel)]="result.salary[0].deduction" >
+           </div>
+         </div>
+        </accordion-group>
+      </div>
+    </accordion>
+    <br>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

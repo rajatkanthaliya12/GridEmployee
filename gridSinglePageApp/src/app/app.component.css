@@ -1,0 +1,26 @@
+.jumbotron h3{
+  text-align: center;
+}
+.col-md-7,.col-xs-7 {
+  word-wrap: break-word;
+  width: 14.28%;
+  text-align: center;
+}
+.row{
+  margin: 0;
+}
+.delete{
+  margin:5px 0;
+  padding: 7px;
+  background: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.static {
+  padding: 10px;
+  background: orange;
+  font-weight: bold;
+  font-size: 16px;
+}
+
